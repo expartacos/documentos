@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Documentos</title>
+    <link rel="stylesheet" href="css/documentos.css">
+
 </head>
 <body>
 
@@ -13,10 +15,12 @@
         <button onclick="search()">Pesquisar</button>
     </div>
     
-    <div id="resultado">
+    <div id="resultado" class="ocultar">
         <h3 id="tituloDocumentos"></h3>
+        <button onclick="back()">Voltar</button>
     </div>
-
+    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+    <script src="js/init.js"></script>
     <script src="js/documentos.js"></script>    
 </body>
 </html>
