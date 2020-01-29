@@ -28,13 +28,22 @@ function listFiles(cpfValue){
     var storage = firebase.storage();
     var arquivos;
     var nomeArquivos = [];
-    var linksarquivos = [];
+    var linksArquivos = [];
     storage.ref().child(cpfValue).listAll().then(function(todosArquivos){
         arquivos = todosArquivos.items;
         for(let i=0; i<arquivos.length; i++){
+            var j = 0;
             nomeArquivos.push(arquivos[i].name);
             storage.ref(cpfValue+ '/' +nomeArquivos[i]).getDownloadURL().then(function(url){
-                console.log(url);
+                console.log('URL',url);
+                var ul = document.getElementById("list");
+                var li = document.createElement('li');
+                var listItem = '<a href="'+url[i]+'" target="_blank">'+nomeArquivos[i]+'</a>';
+                li.innerHTML = listItem;
+                ul.appendChild(li);    
+                linksArquivos.push(url);
+            }).catch(function(error){
+                console.log(error);
             });
         }
     });
