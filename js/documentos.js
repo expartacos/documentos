@@ -26,8 +26,17 @@ function validation(cpfValue){
 function listFiles(cpfValue){
     document.getElementById('tituloDocumentos').innerHTML= 'Certificados de: ' +cpfValue;
     var storage = firebase.storage();
+    var arquivos;
+    var nomeArquivos = [];
+    var linksarquivos = [];
     storage.ref().child(cpfValue).listAll().then(function(todosArquivos){
-        
+        arquivos = todosArquivos.items;
+        for(let i=0; i<arquivos.length; i++){
+            nomeArquivos.push(arquivos[i].name);
+            storage.ref(cpfValue+ '/' +nomeArquivos[i]).getDownloadURL().then(function(url){
+                console.log(url);
+            });
+        }
     });
 
 }
